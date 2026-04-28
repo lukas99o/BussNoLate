@@ -63,6 +63,7 @@ Default implementation direction:
 - frontend consumes backend endpoints instead of owning transit logic directly
 - keep backend contracts framework-agnostic so the frontend can evolve independently
 - fixture-first development when API setup would otherwise block progress
+- xUnit is the test framework for all backend tests, located in backend/tests/BussNoLate.Api.Tests/
 
 Reason for this direction:
 

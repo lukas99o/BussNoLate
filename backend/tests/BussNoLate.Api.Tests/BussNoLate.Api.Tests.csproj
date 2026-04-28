@@ -18,4 +18,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\BussNoLate.Api\BussNoLate.Api.csproj" />
+  </ItemGroup>
+
 </Project>

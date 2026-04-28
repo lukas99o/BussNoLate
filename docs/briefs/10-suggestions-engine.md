@@ -18,7 +18,7 @@ This is the slice that turns the dashboard from a passive monitor into an operat
 - define a small set of deterministic suggestion rules
 - attach the signals that triggered each suggestion
 - render suggestions in a dedicated panel
-- add tests for the rules if practical in the same slice
+- add xUnit tests for the rules in the test project in backend/tests/BussNoLate.Api.Tests/
 
 ## Out Of Scope
 

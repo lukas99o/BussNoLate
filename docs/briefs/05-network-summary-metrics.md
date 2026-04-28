@@ -17,7 +17,7 @@ The app needs simple, trustworthy metrics before the UI starts presenting operat
 
 - define the first lateness thresholds
 - calculate summary counts and status buckets
-- add tests for the delay logic
+- add xUnit tests for the delay logic using the test project in backend/tests/BussNoLate.Api.Tests/
 
 ## Out Of Scope
 
@@ -29,7 +29,6 @@ The app needs simple, trustworthy metrics before the UI starts presenting operat
 
 - backend/src/BussNoLate.Api/Domain/Metrics/*.cs
 - backend/tests/BussNoLate.Api.Tests/Domain/MetricsTests.cs
-- test config files if they do not exist yet
 
 ## Implementation Notes
 

@@ -17,5 +17,6 @@ var app = builder.Build();
 
 app.MapHealthEndpoints();
 app.MapSlDebugEndpoints();
+app.MapNetworkSummaryEndpoints();
 
 app.Run();
