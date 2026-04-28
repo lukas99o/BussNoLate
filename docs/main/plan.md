@@ -1,7 +1,7 @@
 # Stockholm Bus Punctuality App
 
 Status: Planning baseline
-Last updated: 2026-04-27
+Last updated: 2026-04-28
 
 ## Purpose
 
@@ -60,14 +60,31 @@ Default implementation direction:
 
 - split architecture with a .NET backend and a separate web frontend
 - ASP.NET Core Web API backend for Trafiklab or SL integration, normalization, metrics, and suggestions
-- frontend consumes backend endpoints instead of owning transit logic directly
+- frontend consumes backend data via ASP.NET Core SignalR — the server pushes updates to connected clients
 - keep backend contracts framework-agnostic so the frontend can evolve independently
 - fixture-first development when API setup would otherwise block progress
 - xUnit is the test framework for all backend tests, located in backend/tests/BussNoLate.Api.Tests/
 
+Frontend stack (locked 2026-04-28):
+
+- React 19 + TypeScript — component model suits data-dense operator dashboard; TypeScript aligns frontend types with backend models
+- Tailwind CSS — utility-first styling, no opinionated component library
+- Vite — build tool and dev server
+- React Router v6 — multi-page routing (overview, delayed routes, disruptions, suggestions)
+- @microsoft/signalr — frontend client for the ASP.NET Core SignalR Hub
+
+Tentative frontend route map:
+
+- / — network overview (summary cards)
+- /routes — delayed routes view
+- /disruptions — disruptions panel
+- /suggestions — suggestions engine
+
 Reason for this direction:
 
 - matches the explicit .NET backend decision
+- SignalR avoids client-side polling and pairs naturally with ASP.NET Core
+- React Router keeps each operational view isolated for smaller diffs
 - clear separation between operational data logic and UI
 - smaller diffs per slice
 - easier local setup
@@ -144,12 +161,13 @@ The briefs can be updated as implementation reality changes.
 4. [04-normalization-and-first-endpoint.md](../briefs/04-normalization-and-first-endpoint.md)
 5. [05-network-summary-metrics.md](../briefs/05-network-summary-metrics.md)
 6. [06-dashboard-shell.md](../briefs/06-dashboard-shell.md)
-7. [07-summary-integration.md](../briefs/07-summary-integration.md)
-8. [08-delayed-routes-view.md](../briefs/08-delayed-routes-view.md)
-9. [09-disruptions-panel.md](../briefs/09-disruptions-panel.md)
-10. [10-suggestions-engine.md](../briefs/10-suggestions-engine.md)
-11. [11-refresh-stale-and-attribution.md](../briefs/11-refresh-stale-and-attribution.md)
-12. [12-deployment-and-observability.md](../briefs/12-deployment-and-observability.md)
+7. [07a-signalr-hub-backend.md](../briefs/07a-signalr-hub-backend.md)
+8. [07b-frontend-signalr-wiring.md](../briefs/07b-frontend-signalr-wiring.md)
+9. [08-delayed-routes-view.md](../briefs/08-delayed-routes-view.md)
+10. [09-disruptions-panel.md](../briefs/09-disruptions-panel.md)
+11. [10-suggestions-engine.md](../briefs/10-suggestions-engine.md)
+12. [11-refresh-stale-and-attribution.md](../briefs/11-refresh-stale-and-attribution.md)
+13. [12-deployment-and-observability.md](../briefs/12-deployment-and-observability.md)
 
 ## Slice Definition Of Done
 
