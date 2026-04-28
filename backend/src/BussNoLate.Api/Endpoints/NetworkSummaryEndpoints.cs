@@ -1,3 +1,4 @@
+using BussNoLate.Api.Domain.Metrics;
 using BussNoLate.Api.Domain.Normalization;
 using BussNoLate.Api.Integrations.Sl;
 
@@ -14,6 +15,18 @@ public static class NetworkSummaryEndpoints
             return response is null
                 ? Results.Problem("SL Transport API returned a non-success response. Check application logs for details.")
                 : Results.Ok(response.Departures.Select(SlDepartureNormalizer.Normalize));
+        });
+
+        app.MapGet("/api/summary/{siteId:int}", async (int siteId, ISlTransportClient client, CancellationToken cancellationToken) =>
+        {
+            var response = await client.GetDeparturesAsync(siteId, cancellationToken);
+
+            if (response is null)
+                return Results.Problem("SL Transport API returned a non-success response. Check application logs for details.");
+
+            var departures = response.Departures.Select(SlDepartureNormalizer.Normalize);
+            var metrics = NetworkSummaryCalculator.Calculate(departures);
+            return Results.Ok(metrics);
         });
     }
 }
