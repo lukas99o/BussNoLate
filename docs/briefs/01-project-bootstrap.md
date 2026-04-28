@@ -21,6 +21,7 @@ This slice should give the project a predictable structure without pulling in re
 - add the minimum local run workflow for the backend
 - add a minimal root endpoint that confirms the backend boots
 - add a .gitignore if missing
+- add a dotnet xUnit test project 
 
 ## Out Of Scope
 

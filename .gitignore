@@ -1,0 +1,45 @@
+# .NET build outputs
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# ASP.NET Core
+*.pfx
+
+# Environment / secrets
+.env
+.env.*
+appsettings.*.local.json
+secrets.json
+
+# VS / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+*.DotSettings
+*.DotSettings.user
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test results
+TestResults/
+coverage/
+*.trx
+*.coveragexml
+
+# Publish output
+publish/
