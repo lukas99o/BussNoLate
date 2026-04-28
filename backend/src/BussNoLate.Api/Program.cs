@@ -1,7 +1,14 @@
+using BussNoLate.Api.Configuration;
+using BussNoLate.Api.Endpoints;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services
+    .AddOptions<TrafiklabOptions>()
+    .BindConfiguration(TrafiklabOptions.SectionName);
 
 var app = builder.Build();
 
-app.MapGet("/", () => Results.Ok(new { status = "ok" }));
+app.MapHealthEndpoints();
 
 app.Run();
